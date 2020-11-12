@@ -8,7 +8,7 @@ build_targets:
     container:
       image: yourbase/yb_ubuntu:18.04
     commands:
-      - mvn -B test -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
+      - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
 ci:
   builds:
     - name: default
