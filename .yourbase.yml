@@ -7,10 +7,19 @@ build_targets:
   - name: default
     container:
       image: yourbase/yb_ubuntu:18.04
-    environment:
-      - JAVA_TOOL_OPTIONS=-javaagent:/opt/yb/tmp/yourbase-junit-agent.jar
     commands:
       - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
+
+build_targets:
+  - name: local-1
+    container:
+      image: yourbase/yb_ubuntu:18.04
+    environment:
+      #- JAVA_TOOL_OPTIONS=-javaagent:/opt/yb/tmp/yourbase-junit-agent.jar
+      - YB_AGENT_JAR=/Users/jamesnaftel/dev/yourbase/yourbase-java-engine/buildgraph-agent/target/buildgraph-agent-1.0-ALPHA.jar
+    commands:
+      - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
+
 ci:
   builds:
     - name: default
