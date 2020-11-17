@@ -2,11 +2,13 @@ dependencies:
   build:
    - maven:3.5.2
    - java:8.252.09
-   
+
 build_targets:
   - name: default
     container:
       image: yourbase/yb_ubuntu:18.04
+    environment:
+      - JAVA_TOOL_OPTIONS=-javaagent:/opt/yb/tmp/yourbase-junit-agent.jar
     commands:
       - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
 ci:

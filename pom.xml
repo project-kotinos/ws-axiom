@@ -284,6 +284,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
+        <pluginRepository>
+          <id>yourbase-release</id>
+          <url>http://yourbase-maven-repo.s3-website-us-west-2.amazonaws.com/</url>
+        </pluginRepository>
     </pluginRepositories>
 
     <dependencyManagement>
@@ -844,6 +848,27 @@
         </pluginManagement>
         <plugins>
             <plugin>
+              <groupId>io.yourbase</groupId>
+              <artifactId>yourbase-maven-plugin</artifactId>
+              <version>1.1.8-SNAPSHOT</version>
+              <executions>
+                <execution>
+                  <id>yb-init</id>
+                  <phase>initialize</phase>
+                  <goals>
+                    <goal>prepare-agent</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>yb-reporting</id>
+                  <phase>test</phase>
+                  <goals>
+                    <goal>report</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
                     <execution>
@@ -876,7 +901,10 @@
                             <banPluginRepositories>true</banPluginRepositories>
                             <!-- We still need to allow the Apache snapshot repository -->
                             <allowSnapshotRepositories>true</allowSnapshotRepositories>
-                            <allowSnapshotPluginRepositories>true</allowSnapshotPluginRepositories>
+			    <allowSnapshotPluginRepositories>true</allowSnapshotPluginRepositories>
+			    <allowedPluginRepositories>
+				<allowedPluginRepository>yourbase-release</allowedPluginRepository>
+			    </allowedPluginRepositories>
                         </requireNoRepositories>
                     </rules>
                 </configuration>
