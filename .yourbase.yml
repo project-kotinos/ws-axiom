@@ -10,7 +10,6 @@ build_targets:
     commands:
       - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
 
-build_targets:
   - name: local-1
     container:
       image: yourbase/yb_ubuntu:18.04

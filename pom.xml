@@ -213,7 +213,7 @@
         <module>axiom-jaxb</module>
         <module>axiom-all</module>
         <module>samples</module>
-        <module>systests</module>
+		<!--   <module>systests</module> -->
         <module>devguide</module>
         <module>userguide</module>
         <module>apidocs</module>
@@ -250,7 +250,7 @@
         <spring.version>5.0.1.RELEASE</spring.version>
         <springws.version>3.0.3.RELEASE</springws.version>
         <exam.version>4.12.0</exam.version>
-        
+
         <skipDeploy>false</skipDeploy>
     </properties>
 
@@ -561,7 +561,7 @@
                              the data instead of loading it into memory). Obviously, the execution time of
                              these tests also are proportional to the heap size. To accelerate the execution
                              of the tests, we should use a heap size as small as possible. -->
-                        <argLine>${argLine} -Xms16m -Xmx48m</argLine>
+                        <argLine>${argLine} -Xms256m -Xmx1024m</argLine>
                         <trimStackTrace>false</trimStackTrace>
                         <systemProperties>
                             <property>
