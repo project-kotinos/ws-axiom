@@ -7,8 +7,10 @@ build_targets:
   - name: default
     container:
       image: yourbase/yb_ubuntu:18.04
+    environment:
+      - YB_AGENT_JAR=/opt/yb/tmp/yourbase-junit-agent.jar
     commands:
-      - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=100
+      - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=10000
 
   - name: local-1
     container:
