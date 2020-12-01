@@ -8,7 +8,18 @@ build_targets:
     container:
       image: yourbase/yb_ubuntu:18.04
     environment:
-      - YB_AGENT_JAR=/opt/yb/tmp/yourbase-junit-agent.jar
+        - YB_AGENT_JAR=/opt/yb/tmp/yourbase-junit-agent.jar
+    commands:
+      - ls -al /opt/yb/tmp/yourbase-junit-agent.jar
+      - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=10000
+
+  - name: local-con 
+    container:
+      image: yourbase/yb_ubuntu:18.04
+      mounts:
+        - /Users/jamesnaftel/dev/yourbase/yourbase-java-engine/buildgraph-agent/target/buildgraph-agent-1.0-ALPHA.jar:/yourbase-agent.jar
+    environment:
+      - YB_AGENT_JAR=/yourbase-agent.jar
     commands:
       - mvn -B install -Papache-release -Dgpg.skip=true -Drat.numUnapprovedLicenses=10000
 
